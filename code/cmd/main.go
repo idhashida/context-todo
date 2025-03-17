@@ -1,24 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"go/context-todo/configs"
-	"go/context-todo/internal/auth"
-	"net/http"
+	"go/context-todo/internal/home"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	_ = configs.LoadConfig()
-	router := http.NewServeMux()
+	app := fiber.New()
 
-	auth.NewAuthHandler(router)
+	home.NewHandler(app)
 
-	server := http.Server{
-		Addr:    ":8081",
-		Handler: router,
-	}
-
-	fmt.Println("[ START ] server is listening on port 8081")
-	server.ListenAndServe()
-	server.ListenAndServe()
+	app.Listen(":3000")
 }
