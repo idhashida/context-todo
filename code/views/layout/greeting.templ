@@ -1,0 +1,25 @@
+package layout
+
+templ Greeting() {
+    @GreetingStyle()
+    <div class="greeting">
+        <div class="greeting-container">
+            <h2>| ctx-todo |</h2>
+            <h4>a new way of life!</h4>
+        </div>
+    </div>
+}
+
+templ GreetingStyle() {
+    <style>
+        .greeting {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .greeting-container {
+            text-align: center;
+        }
+    </style>
+}

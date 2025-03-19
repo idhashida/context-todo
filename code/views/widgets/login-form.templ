@@ -1,0 +1,36 @@
+package widgets
+
+import "go/context-todo/views/components"
+
+templ LoginForm() {
+    @LoginFormStyle()
+    <div class="login-form">
+        <h2 class="login-form-title">- log in -</h2>
+        <form class="login-form-container">
+            @components.Input(components.InputProps{
+                Name: "email",
+                Placeholder: "email",
+            })
+            @components.Input(components.InputProps{
+                Name: "password",
+                Placeholder: "password",
+            })
+            @components.SubmitButton() {
+                <span>submit</span>
+            }
+        </form>
+    </div>
+}
+
+templ LoginFormStyle() {
+    <style>
+        .login-form {
+            width: 30%;
+            height: fit-content;
+        }
+        .login-form-title {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+    </style>
+}

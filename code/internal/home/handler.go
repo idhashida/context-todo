@@ -1,18 +1,27 @@
 package home
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"go/context-todo/pkg/tadapter"
+	"go/context-todo/views"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/rs/zerolog"
+)
 
 type HomeHandler struct {
-	router fiber.Router
+	router       fiber.Router
+	customLogger *zerolog.Logger
 }
 
-func NewHandler(router fiber.Router) {
+func NewHomeHandler(router fiber.Router, customLogger *zerolog.Logger) {
 	h := &HomeHandler{
-		router: router,
+		router:       router,
+		customLogger: customLogger,
 	}
 	h.router.Get("/", h.home)
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	return c.SendString("Hello, Fiber!")
+	component := views.Main()
+	return tadapter.Render(c, component)
 }

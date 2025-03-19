@@ -1,0 +1,36 @@
+package views
+
+import "go/context-todo/views/layout"
+import "go/context-todo/views/widgets"
+
+templ Login() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "context-todo | Log in",
+        MetaDescription: "BDTM task multiplexer",
+    }) {
+        @LoginStyle()
+        <div class="login">
+            @layout.NavbarLogin()
+            <div class="login-submit-form">
+                @widgets.LoginForm()
+            </div>
+            @layout.Footer()
+        </div>
+    }
+}
+
+templ LoginStyle() {
+    <style>
+        .login {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        .login-submit-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+}

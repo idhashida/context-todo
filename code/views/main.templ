@@ -1,0 +1,29 @@
+package views
+
+// import "go/context-todo/views/components"
+import "go/context-todo/views/layout"
+
+templ Main() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "context-todo | Home",
+        MetaDescription: "BDTM task multiplexer",
+    }) {
+        @MainStyle()
+        <div class="main">
+            @layout.Navbar()
+            @layout.Greeting()
+            @layout.Footer()
+        </div>
+    }
+}
+
+templ MainStyle() {
+    <style>
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+    </style>
+}

@@ -1,0 +1,36 @@
+package views
+
+import "go/context-todo/views/layout"
+import "go/context-todo/views/widgets"
+
+templ Register() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "context-todo | Sign in",
+        MetaDescription: "BDTM task multiplexer",
+    }) {
+        @RegisterStyle()
+        <div class="register">
+            @layout.NavbarRegister()
+            <div class="register-submit-form">
+                @widgets.RegisterForm()
+            </div>
+            @layout.Footer()
+        </div>
+    }
+}
+
+templ RegisterStyle() {
+    <style>
+        .register {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        .register-submit-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+}

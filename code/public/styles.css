@@ -1,0 +1,34 @@
+:root {
+    --color-white: #fff;
+    --color-black: #000;
+    --color-black-50: #808080;
+
+    --color-navbar-text: #26344a;
+
+    --color-button-hover: #1f2937;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Space Grotesk", sans-serif;
+}
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 32px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+    font-size: 20px;
+}
+h5 {
+    font-size: 16px;
+}

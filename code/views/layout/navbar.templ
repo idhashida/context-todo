@@ -1,0 +1,76 @@
+package layout
+
+templ Navbar() {
+    @NavbarStyle()
+    <nav class="navbar">
+        <div class="navbar-logo-container">
+            <a href="/" class="navbar-logo">| ctx-todo |</a>
+        </div>
+
+        <div class="navbar-links">
+            <a href="/auth/login" class="navbar-link">log in</a>
+            <span class="navbar-separator">\\</span>
+            <a href="/auth/register" class="navbar-link">sign in</a>
+        </div>
+    </nav>
+}
+
+templ NavbarLogin() {
+    @NavbarStyle()
+    <nav class="navbar">
+        <div class="navbar-logo-container">
+            <a href="/" class="navbar-logo">| ctx-todo |</a>
+        </div>
+
+        <div class="navbar-links">
+            <a href="/auth/register" class="navbar-link">sign in</a>
+        </div>
+    </nav>
+}
+
+templ NavbarRegister() {
+    @NavbarStyle()
+    <nav class="navbar">
+        <div class="navbar-logo-container">
+            <a href="/" class="navbar-logo">| ctx-todo |</a>
+        </div>
+
+        <div class="navbar-links">
+            <a href="/auth/login" class="navbar-link">log in</a>
+        </div>
+    </nav>
+}
+
+templ NavbarStyle() {
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+        .navbar-logo {
+            color: var(--color-black);
+            text-decoration: none;
+            border-radius: 4px;
+            padding: 4px;
+            transition: background .15s ease-out;
+        }
+        .navbar-links {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .navbar-link {
+            margin: 0 16px;
+            padding: 4px;
+            border-radius: 4px;
+            color: var(--color-navbar-text);
+            text-decoration: none;
+            transition: background .15s ease-out, color .15s ease-out;
+        }
+        .navbar-separator {
+            color: var(--color-navbar-text)
+        }
+    </style>
+}
