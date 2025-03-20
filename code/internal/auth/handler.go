@@ -16,12 +16,14 @@ import (
 type AuthHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
+	repository   *AuthRepository
 }
 
-func NewAuthHandler(router fiber.Router, customLogger *zerolog.Logger) {
+func NewAuthHandler(router fiber.Router, customLogger *zerolog.Logger, repository *AuthRepository) {
 	h := &AuthHandler{
 		router:       router,
 		customLogger: customLogger,
+		repository:   repository,
 	}
 	h.router.Get("/login", h.login)
 	h.router.Get("/register", h.register)
@@ -73,6 +75,15 @@ func (h *AuthHandler) registerPost(c *fiber.Ctx) error {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
 		return tadapter.Render(c, component)
 	}
+	err := h.repository.createUser(form)
+	if err != nil {
+		h.customLogger.Error().Msg(err.Error())
+		component = components.Notification("initial server error", components.NotificationFail)
+		return tadapter.Render(c, component)
+	}
 	// тут должен быть редирект в защищенную часть сайта
-	return c.SendString("/register redirect")
+	h.customLogger.Info().Msg("user created")
+	component = components.Notification("success!", components.NotificationSuccess)
+	return tadapter.Render(c, component)
+	// return c.SendString("/register redirect")
 }

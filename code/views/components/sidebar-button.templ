@@ -1,0 +1,34 @@
+package components
+
+templ SidebarButton(iconSrc, title string) {
+    @SidebarButtonStyle()
+    <button type="button" title={ title } class="sidebar-button">
+        <img src={ iconSrc } alt="icon"></img>
+    </button>
+}
+
+templ SidebarButtonStyle() {
+    <style>
+        .sidebar-button {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            height: fit-content;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: none;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar-button:hover {
+            background-color: var(--color-sidebar-button-hover);
+        }
+        .sidebar-button img {
+            width: 24px;
+            height: 24px;
+            margin: 5px;
+        }
+    </style>
+}

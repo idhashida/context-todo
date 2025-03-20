@@ -6,6 +6,8 @@
     --color-navbar-text: #26344a;
 
     --color-button-hover: #1f2937;
+
+    --color-sidebar-button-hover: #eee;
 }
 body {
     margin: 0;

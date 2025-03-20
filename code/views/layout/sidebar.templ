@@ -1,17 +1,43 @@
 package layout
 
+import "go/context-todo/views/components"
+
 templ Sidebar() {
+    @SidebarStyle()
+    <div class="sidebar">
+        <div class="sidebar-button-container">
+            @components.SidebarButton("/public/images/create24.png", "create")
+            @components.SidebarButton("/public/images/tasks24.png", "tasks")
+            @components.SidebarButton("/public/images/calendar24.png", "calendar")
+        </div>
+        <div class="sidebar-button-container-bottom">
+            @components.SidebarButton("/public/images/profile24.png", "more")
+        </div>
+    </div>
+}
+
+templ SidebarStyle() {
     <style>
         .sidebar {
+            height: 100vh;
+            width: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border-right: 1px solid var(--color-black);
+        }
+        .sidebar-button-container {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 3%;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+            gap: 1rem;
+        }
+        .sidebar-button-container-bottom {
+            margin-bottom: 10px;
         }
     </style>
-    <div class="sidebar">
-        <button>Профиль</button>
-        <button>Списки</button>
-        <button>Календарь</button>
-    </div>
 }

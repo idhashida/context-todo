@@ -6,6 +6,7 @@ import (
 	"go/context-todo/internal/calendar"
 	"go/context-todo/internal/home"
 	"go/context-todo/internal/tasks"
+	"go/context-todo/pkg/database"
 	"go/context-todo/pkg/logger"
 
 	"github.com/gofiber/contrib/fiberzerolog"
@@ -17,6 +18,7 @@ func main() {
 	config.Init()
 	config.NewDatabaseConfig()
 	logConf := config.NewLogConfig()
+	dbConf := config.NewDatabaseConfig()
 	customLogger := logger.NewLogger(logConf)
 
 	app := fiber.New()
@@ -26,8 +28,15 @@ func main() {
 	app.Use(recover.New())
 	app.Static("/public", "./public")
 
+	dbpool := database.CreateDbPool(dbConf, customLogger)
+	defer dbpool.Close()
+
+	// Repositories
+	authRepo := auth.NewAuthRepository(dbpool, customLogger)
+
+	// Handlers
 	home.NewHomeHandler(app, customLogger)
-	auth.NewAuthHandler(app, customLogger)
+	auth.NewAuthHandler(app, customLogger, authRepo)
 	tasks.NewTasksHandler(app, customLogger)
 	calendar.NewCalendarHandler(app, customLogger)
 
