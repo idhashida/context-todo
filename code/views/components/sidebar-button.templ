@@ -1,8 +1,8 @@
 package components
 
-templ SidebarButton(iconSrc, title string) {
+templ SidebarButton(iconSrc, title, route string) {
     @SidebarButtonStyle()
-    <button type="button" title={ title } class="sidebar-button">
+    <button type="button" title={ title } class="sidebar-button" hx-get={ route } hx-trigger="click" hx-target="#main-layout-div" hx-swap="innerHTML">
         <img src={ iconSrc } alt="icon"></img>
     </button>
 }

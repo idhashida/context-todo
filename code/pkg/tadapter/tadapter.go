@@ -7,6 +7,6 @@ import (
 )
 
 // Адаптация net/http хэндлер к fiber хэндлер
-func Render(c *fiber.Ctx, component templ.Component) error {
+func Render(c *fiber.Ctx, component templ.Component, code int) error {
 	return adaptor.HTTPHandler(templ.Handler(component))(c)
 }

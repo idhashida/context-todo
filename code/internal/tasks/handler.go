@@ -3,6 +3,7 @@ package tasks
 import (
 	"go/context-todo/pkg/tadapter"
 	"go/context-todo/views"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
@@ -18,10 +19,10 @@ func NewTasksHandler(router fiber.Router, customLogger *zerolog.Logger) {
 		router:       router,
 		customLogger: customLogger,
 	}
-	h.router.Get("/tasks", h.getAllTasks)
+	h.router.Get("/tasks", h.getTasks)
 }
 
-func (h *TasksHandler) getAllTasks(c *fiber.Ctx) error {
+func (h TasksHandler) getTasks(c *fiber.Ctx) error {
 	component := views.Tasks()
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }

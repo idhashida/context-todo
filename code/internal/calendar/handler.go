@@ -3,6 +3,7 @@ package calendar
 import (
 	"go/context-todo/pkg/tadapter"
 	"go/context-todo/views"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
@@ -23,5 +24,5 @@ func NewCalendarHandler(router fiber.Router, customLogger *zerolog.Logger) {
 
 func (h *CalendarHandler) getCalendar(c *fiber.Ctx) error {
 	component := views.Calendar()
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }

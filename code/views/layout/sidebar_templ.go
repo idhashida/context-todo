@@ -39,15 +39,15 @@ func Sidebar() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.SidebarButton("/public/images/create24.png", "create").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.SidebarButton("/public/images/create24.png", "create", "/tasks/new").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.SidebarButton("/public/images/tasks24.png", "tasks").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.SidebarButton("/public/images/tasks24.png", "tasks", "/tasks").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.SidebarButton("/public/images/calendar24.png", "calendar").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.SidebarButton("/public/images/calendar24.png", "calendar", "/calendar").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -55,7 +55,7 @@ func Sidebar() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.SidebarButton("/public/images/profile24.png", "more").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.SidebarButton("/public/images/profile24.png", "more", "/more").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

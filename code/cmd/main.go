@@ -5,6 +5,7 @@ import (
 	"go/context-todo/internal/auth"
 	"go/context-todo/internal/calendar"
 	"go/context-todo/internal/home"
+	"go/context-todo/internal/main_page"
 	"go/context-todo/internal/tasks"
 	"go/context-todo/pkg/database"
 	"go/context-todo/pkg/logger"
@@ -37,6 +38,7 @@ func main() {
 	// Handlers
 	home.NewHomeHandler(app, customLogger)
 	auth.NewAuthHandler(app, customLogger, authRepo)
+	main_page.NewMainPageHandler(app, customLogger)
 	tasks.NewTasksHandler(app, customLogger)
 	calendar.NewCalendarHandler(app, customLogger)
 

@@ -7,7 +7,13 @@ templ RegisterForm() {
     <div class="register-form">
         <h2 class="register-form-title">- sign in -</h2>
         <div id="register-result"></div>
-        <form class="register-form-container" hx-post="/auth/register" hx-trigger="submit" hx-target="#register-result" hx-swap="innerHTML">
+        <form class="register-form-container"
+            hx-post="/auth/register"
+            hx-trigger="submit"
+            hx-target="#register-result"
+            hx-swap="innerHTML"
+            hx-on::after-request="if(event.detail.successful) this.reset()"
+            >
             @components.Input(components.InputProps{
                 Name: "username",
                 Placeholder: "username",

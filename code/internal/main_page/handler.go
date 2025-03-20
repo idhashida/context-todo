@@ -1,4 +1,4 @@
-package home
+package main_page
 
 import (
 	"go/context-todo/pkg/tadapter"
@@ -9,20 +9,20 @@ import (
 	"github.com/rs/zerolog"
 )
 
-type HomeHandler struct {
+type MainPageHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
 }
 
-func NewHomeHandler(router fiber.Router, customLogger *zerolog.Logger) {
-	h := &HomeHandler{
+func NewMainPageHandler(router fiber.Router, customLogger *zerolog.Logger) {
+	h := &MainPageHandler{
 		router:       router,
 		customLogger: customLogger,
 	}
-	h.router.Get("/", h.home)
+	h.router.Get("/observe", h.getMainLayout)
 }
 
-func (h *HomeHandler) home(c *fiber.Ctx) error {
-	component := views.Main()
+func (h *MainPageHandler) getMainLayout(c *fiber.Ctx) error {
+	component := views.MainLayout()
 	return tadapter.Render(c, component, http.StatusOK)
 }

@@ -5,6 +5,7 @@ import (
 	"go/context-todo/pkg/validator"
 	"go/context-todo/views"
 	"go/context-todo/views/components"
+	"net/http"
 
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
@@ -33,12 +34,12 @@ func NewAuthHandler(router fiber.Router, customLogger *zerolog.Logger, repositor
 
 func (h *AuthHandler) login(c *fiber.Ctx) error {
 	component := views.Login()
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }
 
 func (h *AuthHandler) register(c *fiber.Ctx) error {
 	component := views.Register()
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }
 
 func (h *AuthHandler) loginPost(c *fiber.Ctx) error {
@@ -53,10 +54,9 @@ func (h *AuthHandler) loginPost(c *fiber.Ctx) error {
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
-	// тут должен быть редирект в защищенную часть сайта
-	return c.SendString("/login redirect")
+	return c.Redirect("/calendar", http.StatusOK)
 }
 
 func (h *AuthHandler) registerPost(c *fiber.Ctx) error {
@@ -73,17 +73,15 @@ func (h *AuthHandler) registerPost(c *fiber.Ctx) error {
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 	err := h.repository.createUser(form)
 	if err != nil {
 		h.customLogger.Error().Msg(err.Error())
 		component = components.Notification("initial server error", components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
-	// тут должен быть редирект в защищенную часть сайта
 	h.customLogger.Info().Msg("user created")
 	component = components.Notification("success!", components.NotificationSuccess)
-	return tadapter.Render(c, component)
-	// return c.SendString("/register redirect")
+	return tadapter.Render(c, component, http.StatusOK)
 }

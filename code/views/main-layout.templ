@@ -1,0 +1,29 @@
+package views
+
+import "go/context-todo/views/layout"
+
+templ MainLayout() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "context-todo | Tasks",
+        MetaDescription: "BDTM task multiplexer",
+    }) {
+        @MainLayoutStyle()
+        <div class="main-layout-container">
+            @layout.Sidebar()
+            <div id="main-layout-div" class="main-layout-content"></div>
+        </div>
+    } 
+}
+
+templ MainLayoutStyle() {
+    <style>
+        .main-layout-container {
+            display: flex;
+            flex-direction: row;
+        }
+        .main-layout-content {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+}
