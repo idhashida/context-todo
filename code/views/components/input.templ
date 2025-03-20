@@ -7,7 +7,11 @@ type InputProps struct {
 
 templ Input(props InputProps) {
     @InputStyle()
-    <input placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
+    if props.Name == "password" {
+        <input type="password" placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
+    } else {
+        <input placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
+    }
 }
 
 templ InputStyle() {

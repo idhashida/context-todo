@@ -1,0 +1,25 @@
+package views
+
+import "go/context-todo/views/layout"
+
+templ Calendar() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "context-todo | Tasks",
+        MetaDescription: "BDTM task multiplexer",
+    }) {
+        @CalendarStyle()
+        <div class="calendar">
+            // @layout.Sidebar
+            // @layout.Calendar
+            Calendar
+        </div>
+    }
+}
+
+templ CalendarStyle() {
+    <style>
+        .calendar {
+            border: 1px dashed grey;
+        }
+    </style>
+}

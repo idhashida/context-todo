@@ -1,0 +1,37 @@
+package components
+
+type NotificationStatus string
+
+const (
+    NotificationSuccess NotificationStatus = "success"
+    NotificationFail NotificationStatus = "fail"
+)
+
+templ Notification(message string, status NotificationStatus) {
+    @NotificationStyle()
+    <div class={
+        "notification", 
+        templ.KV("notification-success", status == NotificationSuccess),
+        templ.KV("notification-fail", status == NotificationFail),
+    }>{ message }</div>
+}
+
+templ NotificationStyle() {
+    <style>
+        .notification {
+            width: 100%;
+            padding: .5rem;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+            font-size: 16px;
+            border: 2px dashed var(--color-black);
+            text-align: center;
+        }
+        .notification-success {
+            background-color: lightgreen;
+        }
+        .notification-fail {
+            background-color: lightcoral;
+        }
+    </style>
+}

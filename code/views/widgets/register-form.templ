@@ -6,7 +6,8 @@ templ RegisterForm() {
     @RegisterFormStyle()
     <div class="register-form">
         <h2 class="register-form-title">- sign in -</h2>
-        <form class="register-form-container">
+        <div id="register-result"></div>
+        <form class="register-form-container" hx-post="/auth/register" hx-trigger="submit" hx-target="#register-result" hx-swap="innerHTML">
             @components.Input(components.InputProps{
                 Name: "username",
                 Placeholder: "username",

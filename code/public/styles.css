@@ -19,16 +19,21 @@ body {
 }
 h1 {
     font-size: 36px;
+    color: var(--color-navbar-text);
 }
 h2 {
     font-size: 32px;
+    color: var(--color-navbar-text);
 }
 h3 {
     font-size: 24px;
+    color: var(--color-navbar-text);
 }
 h4 {
     font-size: 20px;
+    color: var(--color-navbar-text);
 }
 h5 {
     font-size: 16px;
+    color: var(--color-navbar-text);
 }

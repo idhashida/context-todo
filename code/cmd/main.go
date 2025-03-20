@@ -3,7 +3,9 @@ package main
 import (
 	"go/context-todo/config"
 	"go/context-todo/internal/auth"
+	"go/context-todo/internal/calendar"
 	"go/context-todo/internal/home"
+	"go/context-todo/internal/tasks"
 	"go/context-todo/pkg/logger"
 
 	"github.com/gofiber/contrib/fiberzerolog"
@@ -26,6 +28,8 @@ func main() {
 
 	home.NewHomeHandler(app, customLogger)
 	auth.NewAuthHandler(app, customLogger)
+	tasks.NewTasksHandler(app, customLogger)
+	calendar.NewCalendarHandler(app, customLogger)
 
 	app.Listen(":3000")
 }

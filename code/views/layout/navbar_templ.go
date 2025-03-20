@@ -33,7 +33,7 @@ func Navbar() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"navbar\"><div class=\"navbar-logo-container\"><a href=\"/\" class=\"navbar-logo\">| ctx-todo |</a></div><div class=\"navbar-links\"><a href=\"/auth/login\" class=\"navbar-link\">log in</a> <span class=\"navbar-separator\">\\\\</span> <a href=\"/auth/register\" class=\"navbar-link\">sign in</a></div></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"navbar\"><div class=\"navbar-logo-container\"><a href=\"/\" class=\"navbar-logo\">| ctx-todo |</a></div><div class=\"navbar-links\"><a href=\"/login\" class=\"navbar-link\">log in</a> <span class=\"navbar-separator\">\\\\</span> <a href=\"/register\" class=\"navbar-link\">sign in</a></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -66,7 +66,7 @@ func NavbarLogin() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<nav class=\"navbar\"><div class=\"navbar-logo-container\"><a href=\"/\" class=\"navbar-logo\">| ctx-todo |</a></div><div class=\"navbar-links\"><a href=\"/auth/register\" class=\"navbar-link\">sign in</a></div></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<nav class=\"navbar\"><div class=\"navbar-logo-container\"><a href=\"/\" class=\"navbar-logo\">| ctx-todo |</a></div><div class=\"navbar-links\"><a href=\"/register\" class=\"navbar-link\">sign in</a></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -99,7 +99,7 @@ func NavbarRegister() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<nav class=\"navbar\"><div class=\"navbar-logo-container\"><a href=\"/\" class=\"navbar-logo\">| ctx-todo |</a></div><div class=\"navbar-links\"><a href=\"/auth/login\" class=\"navbar-link\">log in</a></div></nav>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<nav class=\"navbar\"><div class=\"navbar-logo-container\"><a href=\"/\" class=\"navbar-logo\">| ctx-todo |</a></div><div class=\"navbar-links\"><a href=\"/login\" class=\"navbar-link\">log in</a></div></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -128,7 +128,7 @@ func NavbarStyle() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\r\n        .navbar {\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            padding: 15px;\r\n            border-bottom: 1px solid rgba(0, 0, 0, .1);\r\n        }\r\n        .navbar-logo {\r\n            color: var(--color-black);\r\n            text-decoration: none;\r\n            border-radius: 4px;\r\n            padding: 4px;\r\n            transition: background .15s ease-out;\r\n        }\r\n        .navbar-links {\r\n            display: flex;\r\n            justify-content: flex-end;\r\n        }\r\n        .navbar-link {\r\n            margin: 0 16px;\r\n            padding: 4px;\r\n            border-radius: 4px;\r\n            color: var(--color-navbar-text);\r\n            text-decoration: none;\r\n            transition: background .15s ease-out, color .15s ease-out;\r\n        }\r\n        .navbar-separator {\r\n            color: var(--color-navbar-text)\r\n        }\r\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\r\n        .navbar {\r\n            display: flex;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            padding: 16px;\r\n            border-bottom: 1px solid rgba(0, 0, 0, .1);\r\n        }\r\n        .navbar-logo {\r\n            color: var(--color-black);\r\n            text-decoration: none;\r\n            border-radius: 4px;\r\n            padding: 4px;\r\n            transition: background .15s ease-out;\r\n            margin: 10px;\r\n        }\r\n        .navbar-links {\r\n            display: flex;\r\n            justify-content: flex-end;\r\n        }\r\n        .navbar-link {\r\n            margin: 0 16px;\r\n            padding: 4px;\r\n            border-radius: 4px;\r\n            color: var(--color-navbar-text);\r\n            text-decoration: none;\r\n            transition: background .15s ease-out, color .15s ease-out;\r\n        }\r\n        .navbar-separator {\r\n            color: var(--color-navbar-text)\r\n        }\r\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

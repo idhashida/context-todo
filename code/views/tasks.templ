@@ -1,0 +1,25 @@
+package views
+
+import "go/context-todo/views/layout"
+
+templ Tasks() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "context-todo | Tasks",
+        MetaDescription: "BDTM task multiplexer",
+    }) {
+        @TasksStyle()
+        <div class="tasks">
+            // @layout.Sidebar
+            // @layout.Tasks
+            Tasks
+        </div>
+    } 
+}
+
+templ TasksStyle() {
+    <style>
+        .tasks {
+            border: 1px dashed grey;
+        }
+    </style>
+}
