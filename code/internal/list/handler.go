@@ -5,7 +5,6 @@ import (
 	"go/context-todo/pkg/validator"
 	"go/context-todo/views/components"
 	"go/context-todo/views/layout"
-	"go/context-todo/views/widgets"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -31,13 +30,14 @@ func NewListHandler(router fiber.Router, customLogger *zerolog.Logger, repositor
 		store:        store,
 	}
 	h.router.Get("/list/new", h.createListForm)
-	h.router.Post("/list/create", h.createNewList)
 	h.router.Get("/list/get", h.getCurrList)
+
+	h.router.Post("/list/create", h.createNewList)
 }
 
 // возвращает форму для создания списка
 func (h *ListHandler) createListForm(c *fiber.Ctx) error {
-	component := widgets.NewListForm()
+	component := layout.NewListForm()
 	return tadapter.Render(c, component, http.StatusOK)
 }
 

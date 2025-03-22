@@ -3,7 +3,18 @@ package layout
 import "go/context-todo/views/components"
 
 templ ListLi(name, color string) {
-    <li>
+    @ListLiStyle()
+    <li class="list-li-element">
         @components.ListButton(name, "/list/get", "#task-main-div", name, color)
     </li>
+}
+
+templ ListLiStyle() {
+    <style>
+        .list-li-element {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+    </style>
 }

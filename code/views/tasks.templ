@@ -1,10 +1,11 @@
 package views
 
 import "go/context-todo/views/widgets"
+import "go/context-todo/internal/list"
 
-templ Tasks() {
+templ Tasks(lists []list.List) {
     @TasksStyle()
-    @widgets.TaskBlocks()
+    @widgets.TaskBlocks(lists)
     <div id="task-main-div" class="tasks">
         Tasks
     </div>

@@ -1,0 +1,25 @@
+package components
+
+type TextAreaProps struct {
+    Name string
+    Placeholder string
+}
+
+templ TextArea(props TextAreaProps) {
+    @TextAreaStyle()
+    <textarea class="text-area" name={ props.Name } placeholder={ props.Placeholder }></textarea>
+}
+
+templ TextAreaStyle() {
+    <style>
+        .text-area {
+            width: inherit;
+            max-width: 100%;
+            min-width: 100%;
+            height: inherit;
+            max-height: 100%;
+            min-height: fit-content;
+            border: 1px solid var(--color-black);
+        }
+    </style>
+}

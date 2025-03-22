@@ -1,0 +1,10 @@
+package components
+
+import "strconv"
+
+templ Option(value string, intValue int) {
+    {{ 
+        intV := strconv.Itoa(intValue) 
+    }}
+    <option value={ intV }>{ value }</option>
+}

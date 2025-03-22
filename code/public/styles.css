@@ -39,7 +39,7 @@ h5 {
     font-size: 16px;
     color: var(--color-navbar-text);
 }
-span {
+span,textarea,select,option {
     font-family: "Space Grotesk", sans-serif;
 }
 li, ol, ul {

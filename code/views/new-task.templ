@@ -1,5 +1,29 @@
 package views
 
-templ NewTask() {
-    <div>NewTask</div>
+import "go/context-todo/internal/list"
+import "go/context-todo/views/widgets"
+import "go/context-todo/internal/sublists"
+import "go/context-todo/internal/statuses"
+import "go/context-todo/internal/priority"
+
+templ NewTask(lists []list.List, sublists []sublists.Sublist, statuses []statuses.Status, priorities []priority.Priority) {
+    @NewTaskStyle()
+    <div class="new-task-container">
+        @widgets.TaskForm(lists, sublists, statuses, priorities)
+    </div>
+}
+
+templ NewTaskStyle() {
+    <style>
+        .new-task-container {
+            display: flex;
+            flex-direction: column;
+            width: inherit;
+            height: inherit;
+            overflow-y: auto;
+            max-height: 100%;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+    </style>
 }

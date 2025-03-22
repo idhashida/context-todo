@@ -1,5 +1,5 @@
 create table lists (
-	id serial primary key,
+  id serial primary key,
   name varchar(200) not null,
   user_id int not null,
   color varchar(50) not null,

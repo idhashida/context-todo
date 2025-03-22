@@ -1,0 +1,148 @@
+package widgets
+
+import "go/context-todo/views/components"
+import "go/context-todo/internal/list"
+import "go/context-todo/internal/sublists"
+import "go/context-todo/internal/statuses"
+import "go/context-todo/internal/priority"
+
+templ TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []statuses.Status, priorities []priority.Priority) {
+    @TaskFormStyle()
+    <div class="task-form">
+        <h3 class="task-form-title">new task</h3>
+        <div id="create-task-result"></div>
+        <form class="task-form-container" 
+            hx-post="/tasks/create" 
+            hx-trigger="submit" 
+            hx-target="#create-task-result" 
+            hx-swap="innerHTML"
+            hx-include="find input"
+            hx-include="find textarea"
+            >
+            @components.Input(components.InputProps{
+                Name: "title",
+                Placeholder: "title",
+            })
+            <div class="task-form-title-container">
+                <span>- list -</span>
+                @components.Select(components.SelectProps{
+                    Name: "list_id",
+                    Text: "- choose your list -",
+                }) {
+                    for _, list := range lists {
+                        @components.Option(list.Name, list.Id)
+                    }
+                }
+            </div>
+            <div class="task-form-title-container">
+                <span>- sublist -</span>
+                @components.Select(components.SelectProps{
+                    Name: "sublist_id",
+                    Text: "- choose sublist -",
+                }) {
+                    for _, sublist := range sublists {
+                        @components.Option(sublist.Title, sublist.Id)
+                    }
+                }
+            </div>
+            <div class="task-form-title-container">
+                <span>- decsription -</span>
+                @components.TextArea(components.TextAreaProps{
+                    Name: "desc",
+                    Placeholder: "description",
+                })
+            </div>
+            <div class="task-form-task-level-container">
+                <div class="task-form-title-container" style="margin-top: 0;">
+                    <span>- context -</span>
+                    @components.TextArea(components.TextAreaProps{
+                        Name: "context",
+                        Placeholder: "context",
+                    })
+                </div>
+                <div class="task-form-title-container">
+                    <span>- scenario -</span>
+                    @components.TextArea(components.TextAreaProps{
+                        Name: "scenario",
+                        Placeholder: "scenario",
+                    })
+                </div>
+                <div class="task-form-title-container" style="margin-bottom: 0;">
+                    <span>- criterion -</span>
+                    @components.TextArea(components.TextAreaProps{
+                        Name: "criterion",
+                        Placeholder: "criterion",
+                    })
+                </div>
+            </div>
+            <div class="task-form-title-container">
+                <span>- status -</span>
+                @components.Select(components.SelectProps{
+                    Name: "status_id",
+                    Text: "- choose status -",
+                }) {
+                    for _, status := range statuses {
+                        @components.Option(status.Name, status.Id)
+                    }
+                }
+            </div>
+            <div class="task-form-title-container">
+                <span>- deadline -</span>
+                @components.Input(components.InputProps{
+                    Name: "deadline",
+                    Placeholder: "deadline",
+                })
+            </div>
+            <div class="task-form-title-container">
+                <span>- priority -</span>
+                @components.Select(components.SelectProps{
+                    Name: "priority_id",
+                    Text: "- choose priority -",
+                }) {
+                    for _, priority := range priorities {
+                        @components.Option(priority.Name, priority.Id)
+                    }
+                }
+            </div>
+            @components.SubmitButton() {
+                <span>create new task</span>
+            }
+        </form>
+    </div>
+}
+
+templ TaskFormStyle() {
+    <style>
+        .task-form {
+            width: 50%;
+            height: fit-content;
+        }
+        .task-form-container {
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0 1rem 0;
+        }
+        .task-form-title {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: start;
+        }
+        .task-form-title-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: start;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            gap: .5rem
+        }
+        .task-form-task-level-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 1rem;
+            border: 1px dashed var(--color-black);
+            border-radius: 5px;
+        }
+    </style>
+}

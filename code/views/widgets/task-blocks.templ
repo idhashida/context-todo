@@ -1,8 +1,10 @@
 package widgets
 
 import "go/context-todo/views/components"
+import "go/context-todo/internal/list"
+import "go/context-todo/views/layout"
 
-templ TaskBlocks() {
+templ TaskBlocks(lists []list.List) {
     @TaskBlocksStyle()
     <div class="task-block-container">
         <div class="task-block-inbox">
@@ -15,15 +17,9 @@ templ TaskBlocks() {
                     @components.ListCreateButton("/public/images/create16.svg", "create new list", "/list/new", "#main-layout-form")
                 </div>
                 <ul id="lists-ul" class="task-block-ul">
-                    <li>
-                        @components.ListButton("inbox", "/inbox", "", "list 1", "red")
-                    </li>
-                    <li>
-                        @components.ListButton("inbox", "/inbox", "", "list 2", "green")
-                    </li>
-                    <li>
-                        @components.ListButton("inbox", "/inbox", "", "list 3", "yellow")
-                    </li>
+                    for _, list := range lists {
+                        @layout.ListLi(list.Name, list.Color)
+                    }
                 </ul>
             </div>
         </div>
@@ -72,6 +68,7 @@ templ TaskBlocksStyle() {
             flex-direction: column;
             max-height: 46.5rem;
             overflow-y: auto;
+            margin-left: -1rem;
         }
         .task-block-lists-header {
             display: flex;

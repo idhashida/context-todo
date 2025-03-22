@@ -35,3 +35,16 @@ values (@name, @color, @user_id)`
 	}
 	return nil
 }
+
+func (r *ListRepository) GetAllForUser(userId int) ([]List, error) {
+	query := "select * from lists l where l.user_id = $1"
+	rows, err := r.Dbpool.Query(context.Background(), query, userId)
+	if err != nil {
+		return nil, err
+	}
+	lists, err := pgx.CollectRows(rows, pgx.RowToStructByName[List])
+	if err != nil {
+		return nil, err
+	}
+	return lists, nil
+}

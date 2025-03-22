@@ -8,6 +8,9 @@ import (
 	"go/context-todo/internal/list"
 	"go/context-todo/internal/main_page"
 	"go/context-todo/internal/more"
+	"go/context-todo/internal/priority"
+	"go/context-todo/internal/statuses"
+	"go/context-todo/internal/sublists"
 	"go/context-todo/internal/tasks"
 	"go/context-todo/pkg/database"
 	"go/context-todo/pkg/logger"
@@ -51,12 +54,16 @@ func main() {
 	// Repositories
 	authRepo := auth.NewAuthRepository(dbpool, customLogger)
 	listRepo := list.NewListRepository(dbpool, customLogger)
+	tasksRepo := tasks.NewTasksRepository(dbpool, customLogger)
+	sublistsRepo := sublists.NewSublistsRepository(dbpool, customLogger)
+	statusesRepo := statuses.NewStatusesRepository(dbpool, customLogger)
+	priorityRepo := priority.NewPriorityRepository(dbpool, customLogger)
 
 	// Handlers
 	home.NewHomeHandler(app, customLogger)
 	auth.NewAuthHandler(app, customLogger, authRepo, store)
 	main_page.NewMainPageHandler(app, customLogger)
-	tasks.NewTasksHandler(app, customLogger)
+	tasks.NewTasksHandler(app, customLogger, store, tasksRepo, sublistsRepo, statusesRepo, priorityRepo)
 	calendar.NewCalendarHandler(app, customLogger)
 	more.NewMoreHandler(app, customLogger)
 	list.NewListHandler(app, customLogger, listRepo, store)

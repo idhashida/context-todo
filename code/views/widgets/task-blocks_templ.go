@@ -9,8 +9,10 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import "go/context-todo/views/components"
+import "go/context-todo/internal/list"
+import "go/context-todo/views/layout"
 
-func TaskBlocks() templ.Component {
+func TaskBlocks(lists []list.List) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -51,31 +53,17 @@ func TaskBlocks() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><ul id=\"lists-ul\" class=\"task-block-ul\"><li>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><ul id=\"lists-ul\" class=\"task-block-ul\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.ListButton("inbox", "/inbox", "", "list 1", "red").Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		for _, list := range lists {
+			templ_7745c5c3_Err = layout.ListLi(list.Name, list.Color).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</li><li>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = components.ListButton("inbox", "/inbox", "", "list 2", "green").Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</li><li>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = components.ListButton("inbox", "/inbox", "", "list 3", "yellow").Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</li></ul></div></div><div class=\"task-block-bin\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</ul></div></div><div class=\"task-block-bin\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -83,7 +71,7 @@ func TaskBlocks() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -112,7 +100,7 @@ func TaskBlocksStyle() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<style>\r\n        .task-block-container {\r\n            border-right: 1px solid var(--color-black);\r\n            width: 18rem;\r\n            display: flex;\r\n            flex-direction: column;\r\n            justify-content: start;\r\n            \r\n        }\r\n        .task-block-inbox {\r\n            display: flex;\r\n            flex-direction: column;\r\n        }\r\n        .task-block-lists {\r\n            display: flex;\r\n            flex-direction: column;\r\n            border-bottom: 1px solid var(--color-black);\r\n        }\r\n        .task-block-bin {\r\n            display: flex;\r\n            flex-direction: column;\r\n        }\r\n        .task-block-span {\r\n            margin-top: 1rem;\r\n            margin-left: 1.5rem;\r\n        }\r\n        .task-block-list {\r\n            display: flex;\r\n            flex-direction: column;\r\n            width: 100%;\r\n            height: fit-content;\r\n            border-top: 1px solid var(--color-black);\r\n        }\r\n        .task-block-ul {\r\n            display: flex;\r\n            flex-direction: column;\r\n            max-height: 46.5rem;\r\n            overflow-y: auto;\r\n        }\r\n        .task-block-lists-header {\r\n            display: flex;\r\n            flex-direction: row;\r\n            justify-content: space-between;\r\n            align-items: end;\r\n        }\r\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\r\n        .task-block-container {\r\n            border-right: 1px solid var(--color-black);\r\n            width: 18rem;\r\n            display: flex;\r\n            flex-direction: column;\r\n            justify-content: start;\r\n            \r\n        }\r\n        .task-block-inbox {\r\n            display: flex;\r\n            flex-direction: column;\r\n        }\r\n        .task-block-lists {\r\n            display: flex;\r\n            flex-direction: column;\r\n            border-bottom: 1px solid var(--color-black);\r\n        }\r\n        .task-block-bin {\r\n            display: flex;\r\n            flex-direction: column;\r\n        }\r\n        .task-block-span {\r\n            margin-top: 1rem;\r\n            margin-left: 1.5rem;\r\n        }\r\n        .task-block-list {\r\n            display: flex;\r\n            flex-direction: column;\r\n            width: 100%;\r\n            height: fit-content;\r\n            border-top: 1px solid var(--color-black);\r\n        }\r\n        .task-block-ul {\r\n            display: flex;\r\n            flex-direction: column;\r\n            max-height: 46.5rem;\r\n            overflow-y: auto;\r\n            margin-left: -1rem;\r\n        }\r\n        .task-block-lists-header {\r\n            display: flex;\r\n            flex-direction: row;\r\n            justify-content: space-between;\r\n            align-items: end;\r\n        }\r\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
