@@ -63,3 +63,6 @@ input[type="color"]::-webkit-color-swatch {
     width: 2rem;
     border-radius: 9999px;
 }
+pre {
+    margin: 0;
+}

@@ -55,7 +55,7 @@ func MainLayout() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div id=\"main-layout-div\" class=\"main-layout-content\"></div><div class=\"main-layout-form\"><div id=\"main-layout-form\" class=\"main-layout-form-container\"></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div id=\"main-layout-div\" class=\"main-layout-content\"><div style=\"display: flex;align-items: center;width: inherit;\"><div style=\"display: flex;flex-direction: row;width: 100%;align-items: end;justify-content: center;\"><img style=\"width: 15rem; height: fit-content\" src=\"/public/images/cat.png\"> <span>what should i do...</span></div></div></div><div class=\"main-layout-form\"><div id=\"main-layout-form\" class=\"main-layout-form-container\"></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
