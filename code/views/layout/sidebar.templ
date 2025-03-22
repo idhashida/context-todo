@@ -6,12 +6,12 @@ templ Sidebar() {
     @SidebarStyle()
     <div class="sidebar">
         <div class="sidebar-button-container">
-            @components.SidebarButton("/public/images/create24.png", "create", "/tasks/new")
-            @components.SidebarButton("/public/images/tasks24.png", "tasks", "/tasks")
-            @components.SidebarButton("/public/images/calendar24.png", "calendar", "/calendar")
+            @components.SidebarButton("/public/images/create24.png", "create", "/tasks/new", "#main-layout-div")
+            @components.SidebarButton("/public/images/tasks24.png", "tasks", "/tasks", "#main-layout-div")
+            @components.SidebarButton("/public/images/calendar24.png", "calendar", "/calendar", "#main-layout-div")
         </div>
         <div class="sidebar-button-container-bottom">
-            @components.SidebarButton("/public/images/profile24.png", "more", "/more")
+            @components.SidebarButton("/public/images/profile24.png", "more", "/more", "#main-layout-div")
         </div>
     </div>
 }
@@ -20,7 +20,7 @@ templ SidebarStyle() {
     <style>
         .sidebar {
             height: 100vh;
-            width: 3.5rem;
+            width: 5rem;
             display: flex;
             flex-direction: column;
             align-items: center;

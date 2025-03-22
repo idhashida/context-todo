@@ -1,15 +1,15 @@
 package components
 
-templ SidebarButton(iconSrc, title, route, target string) {
-    @SidebarButtonStyle()
-    <button type="button" title={ title } class="sidebar-button" hx-get={ route } hx-trigger="click" hx-target={ target } hx-swap="innerHTML">
+templ ListCreateButton(iconSrc, title, route, target string) {
+    @ListCreateButtonStyle()
+    <button type="button" title={ title } class="list-create-button" hx-get={ route } hx-trigger="click" hx-target={ target } hx-swap="innerHTML">
         <img src={ iconSrc } alt="icon"></img>
     </button>
 }
 
-templ SidebarButtonStyle() {
+templ ListCreateButtonStyle() {
     <style>
-        .sidebar-button {
+        .list-create-button {
             display: flex;
             align-items: center;
             width: fit-content;
@@ -21,14 +21,14 @@ templ SidebarButtonStyle() {
             background: none;
             margin: 0;
             padding: 0;
+            margin-right: 24px;
         }
-        .sidebar-button:hover {
+        .list-create-button:hover {
             background-color: var(--color-sidebar-button-hover);
         }
-        .sidebar-button img {
-            width: 24px;
-            height: 24px;
-            margin: 5px;
+        .list-create-button img {
+            width: 16px;
+            height: 16px;
         }
     </style>
 }

@@ -20,9 +20,15 @@ func NewTasksHandler(router fiber.Router, customLogger *zerolog.Logger) {
 		customLogger: customLogger,
 	}
 	h.router.Get("/tasks", h.getTasks)
+	h.router.Get("/tasks/new", h.createNewTask)
 }
 
 func (h TasksHandler) getTasks(c *fiber.Ctx) error {
 	component := views.Tasks()
+	return tadapter.Render(c, component, http.StatusOK)
+}
+
+func (h TasksHandler) createNewTask(c *fiber.Ctx) error {
+	component := views.NewTask()
 	return tadapter.Render(c, component, http.StatusOK)
 }

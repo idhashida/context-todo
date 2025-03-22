@@ -8,7 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func SidebarButton(iconSrc, title, route, target string) templ.Component {
+func ListButton(title, route, target, txt, color string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +29,7 @@ func SidebarButton(iconSrc, title, route, target string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = SidebarButtonStyle().Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = ListButtonStyle().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -40,20 +40,20 @@ func SidebarButton(iconSrc, title, route, target string) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/sidebar-button.templ`, Line: 5, Col: 39}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/list-button.templ`, Line: 5, Col: 39}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"sidebar-button\" hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"list-button\" hx-get=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(route)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/sidebar-button.templ`, Line: 5, Col: 79}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/list-button.templ`, Line: 5, Col: 76}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -66,26 +66,39 @@ func SidebarButton(iconSrc, title, route, target string) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(target)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/sidebar-button.templ`, Line: 5, Col: 119}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/list-button.templ`, Line: 5, Col: 116}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-swap=\"innerHTML\"><img src=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-swap=\"innerHTML\"><div class=\"list-button-inner\"><div class=\"list-button-color\" style=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
-		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(iconSrc)
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues("background-color: " + color)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/sidebar-button.templ`, Line: 6, Col: 26}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/list-button.templ`, Line: 7, Col: 79}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" alt=\"icon\"></button>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"></div><span class=\"list-button-span\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(txt)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/list-button.templ`, Line: 8, Col: 48}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></div></button>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -93,7 +106,7 @@ func SidebarButton(iconSrc, title, route, target string) templ.Component {
 	})
 }
 
-func SidebarButtonStyle() templ.Component {
+func ListButtonStyle() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -109,12 +122,12 @@ func SidebarButtonStyle() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var6 == nil {
-			templ_7745c5c3_Var6 = templ.NopComponent
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\r\n        .sidebar-button {\r\n            display: flex;\r\n            align-items: center;\r\n            width: fit-content;\r\n            height: fit-content;\r\n            text-decoration: none;\r\n            cursor: pointer;\r\n            border: none;\r\n            border-radius: 5px;\r\n            background: none;\r\n            margin: 0;\r\n            padding: 0;\r\n        }\r\n        .sidebar-button:hover {\r\n            background-color: var(--color-sidebar-button-hover);\r\n        }\r\n        .sidebar-button img {\r\n            width: 24px;\r\n            height: 24px;\r\n            margin: 5px;\r\n        }\r\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<style>\r\n        .list-button {\r\n            display: flex;\r\n            align-items: center;\r\n            width: inherit;\r\n            height: 46px;\r\n            text-decoration: none;\r\n            cursor: pointer;\r\n            border: none;\r\n            border-radius: 5px;\r\n            background: none;\r\n            padding: 0;\r\n        }\r\n        .list-button:hover {\r\n            background-color: var(--color-sidebar-button-hover);\r\n        }\r\n        .list-button-inner {\r\n            display: flex;\r\n            flex-direction: row;\r\n            gap: .5rem;\r\n            justify-content: center;\r\n            align-items: center;\r\n            margin: 5px;\r\n        }\r\n        .list-button-span {\r\n            font-size: 16px;\r\n            margin-right: .5rem;\r\n        }\r\n        .list-button-color {\r\n            width: .5rem;\r\n            height: .5rem;\r\n            border: 1px solid var(--color-black);\r\n            border-radius: 9999px;\r\n            margin-left: .5rem;\r\n        }\r\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

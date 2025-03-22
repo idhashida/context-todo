@@ -1,0 +1,49 @@
+package components
+
+templ Button(iconSrc, title, route, target, txt string) {
+    @ButtonStyle()
+    <button type="button" title={ title } class="button" hx-get={ route } hx-trigger="click" hx-target={ target } hx-swap="innerHTML">
+        <div class="button-inner">
+            <img src={ iconSrc } alt="icon"></img>
+            <span class="button-span">{ txt }</span>
+        </div>
+    </button>
+}
+
+templ ButtonStyle() {
+    <style>
+        .button {
+            display: flex;
+            align-items: center;
+            width: inherit;
+            height: fit-content;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: none;
+            margin: .5rem;
+            padding: 0;
+        }
+        .button:hover {
+            background-color: var(--color-sidebar-button-hover);
+        }
+        .button img {
+            width: 20px;
+            height: 20px;
+            margin: .5rem;
+        }
+        .button-inner {
+            display: flex;
+            flex-direction: row;
+            gap: .5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+        .button-span {
+            font-size: 16px;
+            margin-right: .5rem;
+        }
+    </style>
+}

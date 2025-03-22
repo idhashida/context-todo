@@ -1,0 +1,83 @@
+package widgets
+
+import "go/context-todo/views/components"
+
+templ TaskBlocks() {
+    @TaskBlocksStyle()
+    <div class="task-block-container">
+        <div class="task-block-inbox">
+            @components.Button("/public/images/inbox20.png", "inbox", "/inbox", "", "inbox")
+        </div>
+        <div class="task-block-lists">
+            <div class="task-block-list">
+                <div class="task-block-lists-header">
+                    <span class="task-block-span">lists</span>
+                    @components.ListCreateButton("/public/images/create16.svg", "create new list", "/list/new", "#main-layout-form")
+                </div>
+                <ul id="lists-ul" class="task-block-ul">
+                    <li>
+                        @components.ListButton("inbox", "/inbox", "", "list 1", "red")
+                    </li>
+                    <li>
+                        @components.ListButton("inbox", "/inbox", "", "list 2", "green")
+                    </li>
+                    <li>
+                        @components.ListButton("inbox", "/inbox", "", "list 3", "yellow")
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="task-block-bin">
+            @components.Button("/public/images/bin20.png", "bin", "/bin", "", "trash")
+        </div>
+    </div>
+}
+
+templ TaskBlocksStyle() {
+    <style>
+        .task-block-container {
+            border-right: 1px solid var(--color-black);
+            width: 18rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            
+        }
+        .task-block-inbox {
+            display: flex;
+            flex-direction: column;
+        }
+        .task-block-lists {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid var(--color-black);
+        }
+        .task-block-bin {
+            display: flex;
+            flex-direction: column;
+        }
+        .task-block-span {
+            margin-top: 1rem;
+            margin-left: 1.5rem;
+        }
+        .task-block-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: fit-content;
+            border-top: 1px solid var(--color-black);
+        }
+        .task-block-ul {
+            display: flex;
+            flex-direction: column;
+            max-height: 46.5rem;
+            overflow-y: auto;
+        }
+        .task-block-lists-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: end;
+        }
+    </style>
+}

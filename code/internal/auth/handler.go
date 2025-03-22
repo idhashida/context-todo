@@ -11,6 +11,7 @@ import (
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/rs/zerolog"
 )
 
@@ -18,16 +19,19 @@ type AuthHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
 	repository   *AuthRepository
+	store        *session.Store
 }
 
-func NewAuthHandler(router fiber.Router, customLogger *zerolog.Logger, repository *AuthRepository) {
+func NewAuthHandler(router fiber.Router, customLogger *zerolog.Logger, repository *AuthRepository, store *session.Store) {
 	h := &AuthHandler{
 		router:       router,
 		customLogger: customLogger,
 		repository:   repository,
+		store:        store,
 	}
 	h.router.Get("/login", h.login)
 	h.router.Get("/register", h.register)
+
 	h.router.Post("/auth/login", h.loginPost)
 	h.router.Post("/auth/register", h.registerPost)
 }
@@ -56,7 +60,22 @@ func (h *AuthHandler) loginPost(c *fiber.Ctx) error {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
 		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
-	return c.Redirect("/calendar", http.StatusOK)
+	userId := h.repository.validateUser(form)
+	if userId != 0 {
+		sess, err := h.store.Get(c)
+		if err != nil {
+			panic(err)
+		}
+		sess.Set("user_id", userId)
+		sess.Set("email", form.Email)
+		if err := sess.Save(); err != nil {
+			panic(err)
+		}
+		c.Response().Header.Add("Hx-Redirect", "/observe")
+		return c.Redirect("/observe", http.StatusOK)
+	}
+	component = components.Notification("incorrect login or password", components.NotificationFail)
+	return tadapter.Render(c, component, http.StatusBadRequest)
 }
 
 func (h *AuthHandler) registerPost(c *fiber.Ctx) error {

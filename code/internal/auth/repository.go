@@ -35,3 +35,11 @@ values (@username, @email, @password_hash)`
 	}
 	return nil
 }
+
+func (r *AuthRepository) validateUser(form LoginForm) int {
+	var id int
+	query := "select u.id from users u where u.email = $1 and u.password_hash = $2"
+	row := r.Dbpool.QueryRow(context.Background(), query, form.Email, form.Password)
+	row.Scan(&id)
+	return id
+}

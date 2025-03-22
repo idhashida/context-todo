@@ -9,8 +9,10 @@ templ Input(props InputProps) {
     @InputStyle()
     if props.Name == "password" {
         <input type="password" placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
+    } else if props.Name == "color" {
+        <input type="color" name={ props.Name } class="input-color" value="#fff"></input>
     } else {
-        <input placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
+        <input placeholder={ props.Placeholder } name={ props.Name } class="input" value="my new list"></input>
     }
 }
 
@@ -25,6 +27,9 @@ templ InputStyle() {
         }
         .input::placeholder {
             color: var(--color-black-50);
+        }
+        .input-color {
+            margin-left: .5rem;
         }
     </style>
 }

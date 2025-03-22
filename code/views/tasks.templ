@@ -1,5 +1,24 @@
 package views
 
+import "go/context-todo/views/widgets"
+
 templ Tasks() {
-    <div>Tasks</div>
+    @TasksStyle()
+    @widgets.TaskBlocks()
+    <div id="task-main-div" class="tasks">
+        Tasks
+    </div>
+}
+
+templ TasksStyle() {
+    <style>
+        .tasks {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+    </style>
 }

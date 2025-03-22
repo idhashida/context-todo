@@ -1,0 +1,50 @@
+package components
+
+templ ListButton(title, route, target, txt, color string) {
+    @ListButtonStyle()
+    <button type="button" title={ title } class="list-button" hx-get={ route } hx-trigger="click" hx-target={ target } hx-swap="innerHTML">
+        <div class="list-button-inner">
+            <div class="list-button-color" style={ "background-color: " + color }></div>
+            <span class="list-button-span">{ txt }</span>
+        </div>
+    </button>
+}
+
+templ ListButtonStyle() {
+    <style>
+        .list-button {
+            display: flex;
+            align-items: center;
+            width: inherit;
+            height: 46px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: none;
+            padding: 0;
+        }
+        .list-button:hover {
+            background-color: var(--color-sidebar-button-hover);
+        }
+        .list-button-inner {
+            display: flex;
+            flex-direction: row;
+            gap: .5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+        .list-button-span {
+            font-size: 16px;
+            margin-right: .5rem;
+        }
+        .list-button-color {
+            width: .5rem;
+            height: .5rem;
+            border: 1px solid var(--color-black);
+            border-radius: 9999px;
+            margin-left: .5rem;
+        }
+    </style>
+}

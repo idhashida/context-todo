@@ -1,0 +1,51 @@
+package widgets
+
+import "go/context-todo/views/components"
+
+templ NewListForm() {
+    @NewListFormStyle()
+    <div class="new-list-form" hx-post="/list/create" hx-trigger="submit" hx-target="#new-list-form" hx-swap="delete">
+        <form id="new-list-form" class="new-list-form-container" 
+            hx-post="/list/create" 
+            hx-trigger="submit" 
+            hx-target="#lists-ul" 
+            hx-swap="beforeend"
+            hx-include="find input"
+            >
+            <div class="new-list-form-title-container">
+                <h3 class="new-list-form-title">new list</h3>
+                @components.Input(components.InputProps{
+                    Name: "color",
+                    Placeholder: "color",
+                })
+            </div>
+            <div id="new-list-form-result"></div>
+            @components.Input(components.InputProps{
+                Name: "name",
+                Placeholder: "name",
+            })
+            @components.SubmitButton() {
+                <span>create new list</span>
+            }
+        </form>
+    </div>
+}
+
+templ NewListFormStyle() {
+    <style>
+        .new-list-form {
+            width: auto;
+            height: fit-content;
+            margin: 2rem;
+        }
+        .new-list-form-title {
+            margin-top: 0;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .new-list-form-title-container {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+}
