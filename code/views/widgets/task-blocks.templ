@@ -3,12 +3,13 @@ package widgets
 import "go/context-todo/views/components"
 import "go/context-todo/internal/list"
 import "go/context-todo/views/layout"
+import "strconv"
 
 templ TaskBlocks(lists []list.List) {
     @TaskBlocksStyle()
     <div class="task-block-container">
         <div class="task-block-inbox">
-            @components.Button("/public/images/inbox20.png", "inbox", "/inbox", "", "inbox")
+            @components.Button("/public/images/inbox20.png", "inbox", "/inbox", "#task-main-div", "inbox")
         </div>
         <div class="task-block-lists">
             <div class="task-block-list">
@@ -18,13 +19,14 @@ templ TaskBlocks(lists []list.List) {
                 </div>
                 <ul id="lists-ul" class="task-block-ul">
                     for _, list := range lists {
-                        @layout.ListLi(list.Name, list.Color)
+                        {{ listId := strconv.Itoa(list.Id) }}
+                        @layout.ListLi(list.Name, list.Color, "/list/get/"+listId)
                     }
                 </ul>
             </div>
         </div>
         <div class="task-block-bin">
-            @components.Button("/public/images/bin20.png", "bin", "/bin", "", "trash")
+            @components.Button("/public/images/bin20.png", "trash", "/trash", "task-main-div", "trash")
         </div>
     </div>
 }

@@ -6,9 +6,7 @@ import "go/context-todo/internal/list"
 templ Tasks(lists []list.List) {
     @TasksStyle()
     @widgets.TaskBlocks(lists)
-    <div id="task-main-div" class="tasks">
-        Tasks
-    </div>
+    <div id="task-main-div" class="tasks"></div>
 }
 
 templ TasksStyle() {
@@ -20,6 +18,7 @@ templ TasksStyle() {
             height: 100%;
             overflow-x: auto;
             overflow-y: auto;
+            max-width: 100%;
         }
     </style>
 }

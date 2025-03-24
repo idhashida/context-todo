@@ -11,6 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "go/context-todo/views/components"
 import "go/context-todo/internal/list"
 import "go/context-todo/views/layout"
+import "strconv"
 
 func TaskBlocks(lists []list.List) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -41,7 +42,7 @@ func TaskBlocks(lists []list.List) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Button("/public/images/inbox20.png", "inbox", "/inbox", "", "inbox").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Button("/public/images/inbox20.png", "inbox", "/inbox", "#task-main-div", "inbox").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -58,7 +59,8 @@ func TaskBlocks(lists []list.List) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, list := range lists {
-			templ_7745c5c3_Err = layout.ListLi(list.Name, list.Color).Render(ctx, templ_7745c5c3_Buffer)
+			listId := strconv.Itoa(list.Id)
+			templ_7745c5c3_Err = layout.ListLi(list.Name, list.Color, "/list/get/"+listId).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -67,7 +69,7 @@ func TaskBlocks(lists []list.List) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Button("/public/images/bin20.png", "bin", "/bin", "", "trash").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Button("/public/images/bin20.png", "trash", "/trash", "task-main-div", "trash").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

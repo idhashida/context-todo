@@ -4,7 +4,7 @@ import "go/context-todo/views/layout"
 
 templ MainLayout() {
     @layout.Layout(layout.LayoutProps{
-        Title: "context-todo | Tasks",
+        Title: "ctx-todo | tasks",
         MetaDescription: "BDTM task multiplexer",
     }) {
         @MainLayoutStyle()
@@ -13,8 +13,8 @@ templ MainLayout() {
             <div id="main-layout-div" class="main-layout-content">
                 <div style="display: flex;align-items: center;width: inherit;">
                     <div style="display: flex;flex-direction: row;width: 100%;align-items: end;justify-content: center;">
-                        <img style="width: 15rem; height: fit-content" src="/public/images/cat.png"/>
-                        <span>what should i do...</span>
+                        <img style="width: 10rem; height: fit-content" src="/public/images/cat.png"/>
+                        <h5>what should i do...</h5>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,7 @@ templ MainLayoutStyle() {
             display: flex;
             flex-direction: column;
             border-left: 1px solid var(--color-black);
+            height: 100vh;
             width: 45rem;
         }
         .main-layout-form-container {
@@ -48,6 +49,8 @@ templ MainLayoutStyle() {
             flex-direction: column;
             width: 100%;
             height: fit-content;
+            max-height: 100%;
+            overflow-y: auto;
         }
     </style>
 }

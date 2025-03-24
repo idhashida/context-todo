@@ -5,36 +5,45 @@ import "go/context-todo/internal/list"
 import "go/context-todo/internal/sublists"
 import "go/context-todo/internal/statuses"
 import "go/context-todo/internal/priority"
+import "strconv"
 
-templ TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []statuses.Status, priorities []priority.Priority) {
-    @TaskFormStyle()
-    <div class="task-form">
-        <h3 class="task-form-title">new task</h3>
-        <div id="create-task-result"></div>
-        <form class="task-form-container" 
-            hx-post="/tasks/create" 
+templ EditTaskForm(taskInfo map[string]string, lists []list.List, sublists []sublists.Sublist, statuses []statuses.Status, priorities []priority.Priority) {
+    @EditTaskFormStyle()    
+    <div class="edit-task-form" hx-patch={ "/tasks/update/" + taskInfo["task_id"] } hx-trigger="submit" hx-target="#task-form" hx-swap="delete swap:3s">
+        <form id="task-form" class="edit-task-form-container" 
+            hx-patch={ "/tasks/update/" + taskInfo["task_id"] } 
             hx-trigger="submit" 
-            hx-target="#create-task-result" 
-            hx-swap="innerHTML"
+            hx-target="#edit-task-result" 
+            hx-swap="beforeend"
             hx-include="find input"
             hx-include="find textarea"
             >
+            <div class="edit-task-form-title-container">
+                <h3 class="edit-task-form-title">task</h3>
+            </div>
+            <div id="edit-task-result"></div>
+
             @components.Input(components.InputProps{
                 Name: "title",
                 Placeholder: "title",
+                Content: taskInfo["title"],
             })
-            <div class="task-form-title-container">
+            <div class="edit-task-form-title-container">
                 <span>- list -</span>
                 @components.Select(components.SelectProps{
                     Name: "list_id",
                     Text: "- choose your list -",
                 }) {
                     for _, list := range lists {
-                        @components.Option(list.Name, list.Id, false)
+                        if strconv.Itoa(list.Id) == taskInfo["list_id"] {
+                            @components.Option(list.Name, list.Id, true)
+                        } else {
+                            @components.Option(list.Name, list.Id, false)
+                        }
                     }
                 }
             </div>
-            <div class="task-form-title-container">
+            <div class="edit-task-form-title-container">
                 <span>- sublist -</span>
                 @components.Select(components.SelectProps{
                     Name: "sublist_id",
@@ -42,102 +51,122 @@ templ TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []status
                 }) {
                     @components.Option("none (to inbox)", 0, false)
                     for _, sublist := range sublists {
-                        @components.Option(sublist.Title, sublist.Id, false)
+                        if strconv.Itoa(sublist.Id) == taskInfo["sublist_id"] {
+                            @components.Option(sublist.Title, sublist.Id, true)
+                        } else {
+                            @components.Option(sublist.Title, sublist.Id, false)
+                        }
                     }
                 }
             </div>
-            <div class="task-form-title-container">
+            <div class="edit-task-form-title-container">
                 <span>- decsription -</span>
                 @components.TextArea(components.TextAreaProps{
                     Name: "desc",
                     Placeholder: "description",
+                    Content: taskInfo["desc"],
                 })
             </div>
-            <div class="task-form-task-level-container">
-                <div class="task-form-title-container" style="margin-top: 0;">
+            <div style="margin-top: 1rem;"></div>
+            <div class="edit-task-form-task-level-container">
+                <div class="edit-task-form-title-container" style="margin-top: 0;">
                     <span>- context -</span>
                     @components.TextArea(components.TextAreaProps{
                         Name: "context",
                         Placeholder: "context",
+                        Content: taskInfo["context"],
                     })
                 </div>
-                <div class="task-form-title-container">
+                <div class="edit-task-form-title-container">
                     <span>- scenario -</span>
                     @components.TextArea(components.TextAreaProps{
                         Name: "scenario",
                         Placeholder: "scenario",
+                        Content: taskInfo["scenario"],
                     })
                 </div>
-                <div class="task-form-title-container" style="margin-bottom: 0;">
+                <div class="edit-task-form-title-container" style="margin-bottom: 0;">
                     <span>- criterion -</span>
                     @components.TextArea(components.TextAreaProps{
                         Name: "criterion",
                         Placeholder: "criterion",
+                        Content: taskInfo["criterion"],
                     })
                 </div>
             </div>
-            <div class="task-form-title-container">
+            <div class="edit-task-form-title-container">
                 <span>- status -</span>
                 @components.Select(components.SelectProps{
                     Name: "status_id",
                     Text: "- choose status -",
                 }) {
                     for _, status := range statuses {
-                        @components.Option(status.Name, status.Id, false)
+                        if strconv.Itoa(status.Id) == taskInfo["status_id"] {
+                            @components.Option(status.Name, status.Id, true)
+                        } else {
+                            @components.Option(status.Name, status.Id, false)
+                        }
                     }
                 }
             </div>
-            <div class="task-form-title-container">
+            <div class="edit-task-form-title-container">
                 <span>- deadline -</span>
                 @components.Input(components.InputProps{
                     Name: "deadline",
                     Placeholder: "deadline",
+                    Content: taskInfo["deadline"],
                 })
             </div>
-            <div class="task-form-title-container">
+            <div class="edit-task-form-title-container">
                 <span>- priority -</span>
                 @components.Select(components.SelectProps{
                     Name: "priority_id",
                     Text: "- choose priority -",
                 }) {
                     for _, priority := range priorities {
-                        @components.Option(priority.Name, priority.Id, false)
+                        if strconv.Itoa(priority.Id) == taskInfo["priority_id"] {
+                            @components.Option(priority.Name, priority.Id, true)
+                        } else {
+                            @components.Option(priority.Name, priority.Id, false)
+                        }
                     }
                 }
             </div>
+            <div style="margin-top: 1rem;"></div>
             @components.SubmitButton() {
-                <span>create new task</span>
+                <span>update</span>
             }
         </form>
     </div>
 }
 
-templ TaskFormStyle() {
+templ EditTaskFormStyle() {
     <style>
-        .task-form {
-            width: 50%;
+        .edit-task-form {
+            width: 90%;
             height: fit-content;
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
         }
-        .task-form-container {
+        .edit-task-form-title {
+            margin-top: 0;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .edit-task-form-container {
             display: flex;
             flex-direction: column;
             margin: 1rem 0 1rem 0;
         }
-        .task-form-title {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            text-align: start;
-        }
-        .task-form-title-container {
+        .edit-task-form-title-container {
             display: flex;
             flex-direction: column;
             width: 100%;
             align-items: start;
             margin-top: 1rem;
-            margin-bottom: 1rem;
             gap: .5rem
         }
-        .task-form-task-level-container {
+        .edit-task-form-task-level-container {
             display: flex;
             flex-direction: column;
             width: 100%;

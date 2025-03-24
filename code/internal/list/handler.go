@@ -30,7 +30,7 @@ func NewListHandler(router fiber.Router, customLogger *zerolog.Logger, repositor
 		store:        store,
 	}
 	h.router.Get("/list/new", h.createListForm)
-	h.router.Get("/list/get", h.getCurrList)
+	h.router.Get("/list/get/:id", h.getCurrList)
 
 	h.router.Post("/list/create", h.createNewList)
 }
@@ -70,12 +70,23 @@ func (h *ListHandler) createNewList(c *fiber.Ctx) error {
 		component = components.Notification("initial server error", components.NotificationFail)
 		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
-	h.customLogger.Info().Msg("list created")
-	component = layout.ListLi(form.Name, form.Color)
+	component = layout.ListLi(form.Name, form.Color, "/list/get")
 	return tadapter.Render(c, component, http.StatusOK)
 }
 
 func (h *ListHandler) getCurrList(c *fiber.Ctx) error {
-	component := components.Notification("list", "success")
+	sess, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	var userId int = 0
+	if ident, ok := sess.Get("user_id").(int); ok {
+		userId = ident
+	}
+	tasks, err := h.repository.getAllUserTasks(userId)
+	if err != nil {
+		panic(err)
+	}
+	component := layout.CurrentList(tasks)
 	return tadapter.Render(c, component, http.StatusOK)
 }

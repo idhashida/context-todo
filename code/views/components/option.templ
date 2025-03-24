@@ -2,9 +2,13 @@ package components
 
 import "strconv"
 
-templ Option(value string, intValue int) {
+templ Option(value string, intValue int, isSelected bool) {
     {{ 
         intV := strconv.Itoa(intValue) 
     }}
-    <option value={ intV }>{ value }</option>
+    if isSelected {
+        <option selected value={ intV }>{ value }</option>
+    } else {
+        <option value={ intV }>{ value }</option>
+    }
 }

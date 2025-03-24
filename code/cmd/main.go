@@ -5,6 +5,7 @@ import (
 	"go/context-todo/internal/auth"
 	"go/context-todo/internal/calendar"
 	"go/context-todo/internal/home"
+	"go/context-todo/internal/inbox"
 	"go/context-todo/internal/list"
 	"go/context-todo/internal/main_page"
 	"go/context-todo/internal/more"
@@ -58,6 +59,7 @@ func main() {
 	sublistsRepo := sublists.NewSublistsRepository(dbpool, customLogger)
 	statusesRepo := statuses.NewStatusesRepository(dbpool, customLogger)
 	priorityRepo := priority.NewPriorityRepository(dbpool, customLogger)
+	inboxRepo := inbox.NewInboxRepository(dbpool, customLogger)
 
 	// Handlers
 	home.NewHomeHandler(app, customLogger)
@@ -67,6 +69,7 @@ func main() {
 	calendar.NewCalendarHandler(app, customLogger)
 	more.NewMoreHandler(app, customLogger)
 	list.NewListHandler(app, customLogger, listRepo, store)
+	inbox.NewInboxHandler(app, customLogger, inboxRepo, store)
 
 	app.Listen(":3000")
 }

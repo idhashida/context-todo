@@ -3,11 +3,12 @@ package components
 type TextAreaProps struct {
     Name string
     Placeholder string
+    Content string
 }
 
 templ TextArea(props TextAreaProps) {
     @TextAreaStyle()
-    <textarea class="text-area" name={ props.Name } placeholder={ props.Placeholder }></textarea>
+    <textarea class="text-area" name={ props.Name } placeholder={ props.Placeholder }>{ props.Content }</textarea>
 }
 
 templ TextAreaStyle() {

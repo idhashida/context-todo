@@ -48,3 +48,19 @@ func (r *ListRepository) GetAllForUser(userId int) ([]List, error) {
 	}
 	return lists, nil
 }
+
+func (r *ListRepository) getAllUserTasks(userId int) ([]CurrTask, error) {
+	query := `select t.* from tasks t
+join lists l on l.id = t.list_id
+join sublists s on s.id = t.sublist_id
+where l.user_id = $1 and t.is_del = 0`
+	rows, err := r.Dbpool.Query(context.Background(), query, userId)
+	if err != nil {
+		return nil, err
+	}
+	lists, err := pgx.CollectRows(rows, pgx.RowToStructByName[CurrTask])
+	if err != nil {
+		return nil, err
+	}
+	return lists, nil
+}

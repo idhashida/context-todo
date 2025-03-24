@@ -55,14 +55,14 @@ func MainLayout() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div id=\"main-layout-div\" class=\"main-layout-content\"><div style=\"display: flex;align-items: center;width: inherit;\"><div style=\"display: flex;flex-direction: row;width: 100%;align-items: end;justify-content: center;\"><img style=\"width: 15rem; height: fit-content\" src=\"/public/images/cat.png\"> <span>what should i do...</span></div></div></div><div class=\"main-layout-form\"><div id=\"main-layout-form\" class=\"main-layout-form-container\"></div></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div id=\"main-layout-div\" class=\"main-layout-content\"><div style=\"display: flex;align-items: center;width: inherit;\"><div style=\"display: flex;flex-direction: row;width: 100%;align-items: end;justify-content: center;\"><img style=\"width: 10rem; height: fit-content\" src=\"/public/images/cat.png\"><h5>what should i do...</h5></div></div></div><div class=\"main-layout-form\"><div id=\"main-layout-form\" class=\"main-layout-form-container\"></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
 		templ_7745c5c3_Err = layout.Layout(layout.LayoutProps{
-			Title:           "context-todo | Tasks",
+			Title:           "ctx-todo | tasks",
 			MetaDescription: "BDTM task multiplexer",
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -93,7 +93,7 @@ func MainLayoutStyle() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<style>\r\n        .main-layout-container {\r\n            display: flex;\r\n            flex-direction: row;\r\n        }\r\n        .main-layout-content {\r\n            width: 100%;\r\n            height: 100vh;\r\n            display: flex;\r\n            flex-direction: row;\r\n        }\r\n        .main-layout-form {\r\n            display: flex;\r\n            flex-direction: column;\r\n            border-left: 1px solid var(--color-black);\r\n            width: 45rem;\r\n        }\r\n        .main-layout-form-container {\r\n            display: flex;\r\n            flex-direction: column;\r\n            width: 100%;\r\n            height: fit-content;\r\n        }\r\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<style>\r\n        .main-layout-container {\r\n            display: flex;\r\n            flex-direction: row;\r\n        }\r\n        .main-layout-content {\r\n            width: 100%;\r\n            height: 100vh;\r\n            display: flex;\r\n            flex-direction: row;\r\n        }\r\n        .main-layout-form {\r\n            display: flex;\r\n            flex-direction: column;\r\n            border-left: 1px solid var(--color-black);\r\n            height: 100vh;\r\n            width: 45rem;\r\n        }\r\n        .main-layout-form-container {\r\n            display: flex;\r\n            flex-direction: column;\r\n            width: 100%;\r\n            height: fit-content;\r\n            max-height: 100%;\r\n            overflow-y: auto;\r\n        }\r\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

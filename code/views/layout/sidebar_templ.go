@@ -88,7 +88,7 @@ func SidebarStyle() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\r\n        .sidebar {\r\n            height: 100vh;\r\n            width: 5rem;\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            justify-content: space-between;\r\n            border-right: 1px solid var(--color-black);\r\n        }\r\n        .sidebar-button-container {\r\n            display: flex;\r\n            flex-direction: column;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            width: 100%;\r\n            margin-top: 10px;\r\n            gap: 1rem;\r\n        }\r\n        .sidebar-button-container-bottom {\r\n            margin-bottom: 10px;\r\n        }\r\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\r\n        .sidebar {\r\n            height: 100vh;\r\n            width: 5.5rem;\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            justify-content: space-between;\r\n            border-right: 1px solid var(--color-black);\r\n        }\r\n        .sidebar-button-container {\r\n            display: flex;\r\n            flex-direction: column;\r\n            justify-content: space-between;\r\n            align-items: center;\r\n            width: 100%;\r\n            margin-top: 14px;\r\n            gap: 1rem;\r\n        }\r\n        .sidebar-button-container-bottom {\r\n            margin-bottom: 10px;\r\n        }\r\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

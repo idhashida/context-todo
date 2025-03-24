@@ -35,7 +35,7 @@ func NewListForm() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"new-list-form\" hx-post=\"/list/create\" hx-trigger=\"submit\" hx-target=\"#new-list-form\" hx-swap=\"delete\"><form id=\"new-list-form\" class=\"new-list-form-container\" hx-post=\"/list/create\" hx-trigger=\"submit\" hx-target=\"#lists-ul\" hx-swap=\"beforeend\" hx-include=\"find input\"><div class=\"new-list-form-title-container\"><h3 class=\"new-list-form-title\">new list</h3>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"new-list-form\" hx-post=\"/list/create\" hx-trigger=\"submit\" hx-target=\"#new-list-form\" hx-swap=\"delete swap:1s\"><form id=\"new-list-form\" class=\"new-list-form-container\" hx-post=\"/list/create\" hx-trigger=\"submit\" hx-target=\"#lists-ul\" hx-swap=\"beforeend\" hx-include=\"find input\"><div class=\"new-list-form-title-container\"><h3 class=\"new-list-form-title\">new list</h3>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

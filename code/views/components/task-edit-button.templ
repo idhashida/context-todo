@@ -1,0 +1,31 @@
+package components
+
+templ TaskEditButton() {
+    @TaskEditButtonStyle()
+    <button type="button" class="task-edit-button">
+        <img src="/public/images/create16.svg" alt="edit">
+    </button>
+}
+
+templ TaskEditButtonStyle() {
+    <style>
+        .task-edit-button {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            height: fit-content;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: none;
+            margin: 0;
+            padding: 0;
+            margin-right: 1rem;
+        }
+        .task-edit-button img {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+}

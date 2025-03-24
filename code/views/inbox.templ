@@ -1,0 +1,73 @@
+package views
+
+import "strconv"
+
+templ Inbox(inboxTasks map[int]string) {
+    {{ 
+        ln := strconv.Itoa(len(inboxTasks))
+    }}
+    @InboxStyle()
+    <div class="inbox">
+        <h3 class="inbox-title">inbox [ { ln } ]</h3>
+        <div class="inbox-task-container">
+            for k, v := range inboxTasks {
+                <div class="inbox-task" hx-get={ "/tasks/update/form/" + strconv.Itoa(k) } hx-trigger="click" hx-target="#main-layout-form" hx-swap="innerHTML">
+                    <div class="inbox-task-color-title">
+                        <div class="inbox-task-color"></div>
+                        <div class="inbox-task-title">{ v }</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+templ InboxStyle() {
+    <style>
+        .inbox {
+            display: flex;
+            flex-direction: column;
+            width: ;
+            height: fit-content;
+            margin: 2rem;
+        }
+        .inbox-title {
+            margin-bottom: 1rem;
+            margin-top: 0;
+            border-bottom: 1px solid var(--color-black);
+            padding-bottom: .5rem;
+        }
+        .inbox-task-container {
+            display: flex;
+            flex-direction: column;
+            width: inherit;
+            height: inherit;
+        }
+        .inbox-task {
+            display: flex;
+            flex-direction: row;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .inbox-task:hover {
+            background-color: var(--color-sidebar-button-hover);
+        }
+        .inbox-task-title {
+            margin-left: 1rem;
+        }
+        .inbox-task-color {
+            width: 3px;
+            height: inherit;
+            background-color: var(--color-black);
+        }
+        .inbox-task-color-title {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+}

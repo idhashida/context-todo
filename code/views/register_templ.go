@@ -79,7 +79,7 @@ func Register() templ.Component {
 			return nil
 		})
 		templ_7745c5c3_Err = layout.Layout(layout.LayoutProps{
-			Title:           "context-todo | Sign in",
+			Title:           "ctx-todo | sign in",
 			MetaDescription: "BDTM task multiplexer",
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

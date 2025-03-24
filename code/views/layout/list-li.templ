@@ -2,10 +2,10 @@ package layout
 
 import "go/context-todo/views/components"
 
-templ ListLi(name, color string) {
+templ ListLi(name, color, route string) {
     @ListLiStyle()
     <li class="list-li-element">
-        @components.ListButton(name, "/list/get", "#task-main-div", name, color)
+        @components.ListButton(name, route, "#task-main-div", name, color)
     </li>
 }
 

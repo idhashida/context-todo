@@ -67,7 +67,7 @@ func TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []statuse
 			}
 			ctx = templ.InitializeContext(ctx)
 			for _, list := range lists {
-				templ_7745c5c3_Err = components.Option(list.Name, list.Id).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Option(list.Name, list.Id, false).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -97,8 +97,12 @@ func TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []statuse
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
+			templ_7745c5c3_Err = components.Option("none (to inbox)", 0, false).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			for _, sublist := range sublists {
-				templ_7745c5c3_Err = components.Option(sublist.Title, sublist.Id).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Option(sublist.Title, sublist.Id, false).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -173,7 +177,7 @@ func TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []statuse
 			}
 			ctx = templ.InitializeContext(ctx)
 			for _, status := range statuses {
-				templ_7745c5c3_Err = components.Option(status.Name, status.Id).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Option(status.Name, status.Id, false).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -215,7 +219,7 @@ func TaskForm(lists []list.List, sublists []sublists.Sublist, statuses []statuse
 			}
 			ctx = templ.InitializeContext(ctx)
 			for _, priority := range priorities {
-				templ_7745c5c3_Err = components.Option(priority.Name, priority.Id).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = components.Option(priority.Name, priority.Id, false).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

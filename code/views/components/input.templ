@@ -5,6 +5,7 @@ import "time"
 type InputProps struct {
     Placeholder string
     Name string
+    Content string
 }
 
 templ Input(props InputProps) {
@@ -13,10 +14,12 @@ templ Input(props InputProps) {
         <input type="password" placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
     } else if props.Name == "color" {
         <input type="color" name={ props.Name } class="input-color" value="#fff"></input>
+    } else if props.Name == "deadline" && props.Content != ""{
+        <input type="date" name={ props.Name } class="input-date" value={ props.Content }></input>
     } else if props.Name == "deadline" {
         <input type="date" name={ props.Name } class="input-date" value={ time.Now().Format("2006-01-02") }></input>
     } else {
-        <input placeholder={ props.Placeholder } name={ props.Name } class="input"></input>
+        <input placeholder={ props.Placeholder } name={ props.Name } class="input" value={ props.Content }></input>
     }
 }
 

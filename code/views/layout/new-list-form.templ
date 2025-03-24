@@ -4,7 +4,7 @@ import "go/context-todo/views/components"
 
 templ NewListForm() {
     @NewListFormStyle()
-    <div class="new-list-form" hx-post="/list/create" hx-trigger="submit" hx-target="#new-list-form" hx-swap="delete">
+    <div class="new-list-form" hx-post="/list/create" hx-trigger="submit" hx-target="#new-list-form" hx-swap="delete swap:1s">
         <form id="new-list-form" class="new-list-form-container" 
             hx-post="/list/create" 
             hx-trigger="submit" 

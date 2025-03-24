@@ -1,0 +1,102 @@
+package layout
+
+import "time"
+
+type CurrentListDeps struct {
+    CurrTask []map[string]string
+}
+
+templ CurrentList(tasks CurrentListDeps) {
+    @CurrentListStyle()
+    <div class="current-task-main">
+        <div class="current-task-container">
+            <div class="current-task-sublist">
+                <div class="current-task-sublist-title">⚡️ next</div>
+                <div class="current-task-sublist-container">
+                    for _, v := range tasks.CurrTask {
+                        <div class="current-task" hx-get="/" hx-trigger="click" hx-target="#main-layout-form" hx-swap="innerHTML">
+                            <div class="task-title">{ v }</div>
+                            <div class="task-deadline">{ v }</div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="current-task-sublist">
+                <div class="current-task-sublist-title">⚙️ projects</div>
+                <div class="current-task-sublist-container">content</div>
+            </div>
+            <div class="current-task-sublist">
+                <div class="current-task-sublist-title">📆 deadline</div>
+                <div class="current-task-sublist-container">content</div>
+            </div>
+            <div class="current-task-sublist">
+                <div class="current-task-sublist-title">🤝 delegate</div>
+                <div class="current-task-sublist-container">content</div>
+            </div>
+            <div class="current-task-sublist" style="margin-right: 2rem;">
+                <div class="current-task-sublist-title">🔮 someday</div>
+                <div class="current-task-sublist-container">content</div>
+            </div>
+        </div>
+    </div>
+}
+
+templ CurrentListStyle() {
+    <style>
+        .current-task-main {
+            width: 200%;
+            height: inherit;
+            max-width: 200%;
+            max-height: inherit;
+            overflow-x: auto;
+            overflow-y: auto;
+            background-color: var(--color-black-002);
+        }
+        .current-task-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);;
+            height: fit-content;
+        }
+        .current-task-sublist {
+            margin: 2rem;
+            margin-right: 0;
+            border: 1px solid var(--color-black);
+            border-radius: 5px;
+            height: fit-content;
+            background-color: var(--color-white);
+        }
+        .current-task-sublist-title {
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-black);
+        }
+        .current-task-sublist-container {
+            display: flex;
+            flex-direction: column;
+            margin: 1rem;
+            width: inherit;
+            height: fit-content;
+            gap: .5rem;
+        }
+        .current-task {
+            display: flex;
+            flex-direction: row;
+            border-radius: 5px;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            border: 1px solid var(--color-black);
+        }
+        .current-task:hover {
+            background-color: var(--color-sidebar-button-hover);
+        }
+        .task-title {
+            margin-left: 1rem;
+        }
+        .task-deadline {
+            margin-right: 1rem;
+            color: var(--color-black-50);
+        }
+    </style>
+}
